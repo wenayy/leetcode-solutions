@@ -26,7 +26,7 @@ public:
                 int newRow = row + direction.first;
                 int newCol = col + direction.second;
 
-                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && mat[newRow][newCol] > mat[row][col] + 1) {
+                if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols && mat[newRow][newCol] >=mat[row][col] + 1) {
                     mat[newRow][newCol] = mat[row][col] + 1;
                     q.push({newRow, newCol});
                 }
