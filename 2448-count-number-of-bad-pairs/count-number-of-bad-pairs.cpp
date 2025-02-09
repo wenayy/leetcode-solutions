@@ -15,7 +15,7 @@ public:
         
         for (int i = 0; i < n; i++) {
             int val = i - nums[i];
-            if (freq.count(val)) {
+            if (freq.count(val)>0) {
                 goodPairs += freq[val]; // Adding previous occurrences of val
             }
             freq[val]++; // Increment count of this value
