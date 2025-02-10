@@ -4,7 +4,7 @@ public:
         stack<int>st;
         for(int i=0;i<s.length();i++){
             if(isalpha(s[i])) st.push(s[i]);
-            if(!isalpha(s[i])) st.pop();
+            else st.pop();
 
         }
         string ans="";
