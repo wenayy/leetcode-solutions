@@ -1,18 +1,13 @@
 class Solution {
 public:
     string clearDigits(string s) {
-        stack<int>st;
-        for(int i=0;i<s.length();i++){
-            if(isalpha(s[i])) st.push(s[i]);
-            else st.pop();
-
+        string res;
+        for(auto i:s){
+           if (i >= '0' && i <= '9' && !res.empty()) {  
+    res.pop_back();  
+}
+            else res.push_back(i);
         }
-        string ans ;
-        while(!st.empty()){
-            ans+=st.top();
-            st.pop();
-        }
-      reverse(ans.begin(),ans.end());
-        return ans;
+        return res;
     }
 };
