@@ -7,7 +7,7 @@ public:
             else st.pop();
 
         }
-        string ans="";
+        string ans ;
         while(!st.empty()){
             ans+=st.top();
             st.pop();
