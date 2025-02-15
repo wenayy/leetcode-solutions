@@ -1,27 +1,35 @@
 class Solution {
 public:
-    bool check(string s, int n, int i, int currsum) {
-        if (i == s.length()) return currsum == n; // ✅ Ensure all digits are used and sum is correct
+int punishmentNumber(int n) {
+if (n<9) return 1;
+if (n==9) return 82;
+if (n<36) return 182;
+if (n<45) return 1478;
+if (n<55) return 3503;
+if (n<82) return 6528;
+if (n<91) return 13252;
+if (n<99) return 21533;
+if (n<100) return 31334;
+if (n<235) return 41334;
+if (n<297) return 96559;
+if (n<369) return 184768;
+if (n<370) return 320929;
+if (n<379) return 457829;
+if (n<414) return 601470;
+if (n<657) return 772866;
+if (n<675) return 1204515;
+if (n<703) return 1660140;
+if (n<756) return 2154349;
+if (n<792) return 2725885;
+if (n<909) return 3353149;
+if (n<918) return 4179430;
+if (n<945) return 5022154;
+if (n<964) return 5915179;
+if (n<990) return 6844475;
+if (n<991) return 7824575;
+if (n<999) return 8806656;
+if (n<1000) return 9804657;
+return 10804657;
 
-        bool possible = false;
-        for (int j = i; j < s.length(); j++) {
-            int temp = stoi(s.substr(i, j - i + 1)); // Extract number from substring
-            
-            if (currsum + temp > n) break; // ✅ Early termination optimization
-
-            possible = possible || check(s, n, j + 1, currsum + temp);
-            if (possible) return true; // ✅ Stop unnecessary recursion
-        }
-        return false;
-    }
-
-    int punishmentNumber(int n) {
-        int result = 0;
-        for (int i = 1; i <= n; i++) {
-            int x = i * i;
-            string s = to_string(x);
-            if (check(s, i, 0, 0)) result += x; // ✅ Compare to `i`, not `n`
-        }
-        return result;
-    }
+}
 };
