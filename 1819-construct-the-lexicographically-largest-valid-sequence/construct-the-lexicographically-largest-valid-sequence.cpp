@@ -3,84 +3,68 @@ public:
     vector<int> constructDistancedSequence(int n) {
         // The final sequence has length 2*n - 1
         vector<int> result(2*n - 1, 0);
-
-        // Track which indices are already occupied
-        vector<bool> usedPositions(2*n - 1, false);
-
-        // Track which numbers 1..n are used
-        vector<bool> usedNumbers(n + 1, false);
-
+        
+        // used[i] = true means we've already placed the number i
+        vector<bool> used(n + 1, false);
+        
         // Start backtracking from index 0
-        backtrack(0, result, usedPositions, usedNumbers, n);
-
+        backtrack(0, result, used, n);
+        
         return result;
     }
-
+    
 private:
-    bool backtrack(int idx,
-                   vector<int>& result,
-                   vector<bool>& usedPositions,
-                   vector<bool>& usedNumbers,
-                   int n)
-    {
-        // If we've filled all indices, we're done
+    bool backtrack(int idx, vector<int>& result, vector<bool>& used, int n) {
+        // If we've reached the end, we have a complete valid sequence
         if (idx == (int)result.size()) {
             return true;
         }
-
-        // If this position is already occupied, move to the next
-        if (usedPositions[idx]) {
-            return backtrack(idx + 1, result, usedPositions, usedNumbers, n);
+        
+        // If this position is already occupied, skip it
+        if (result[idx] != 0) {
+            return backtrack(idx + 1, result, used, n);
         }
-
-        // Try to place numbers from n down to 2 for a lexicographically largest result
+        
+        // Try placing the largest unused number first
         for (int i = n; i >= 2; i--) {
-            if (!usedNumbers[i]) {
-                int j = idx + i;
-                // Check if j is in range and both idx and j are free
-                if (j < (int)result.size() &&
-                    !usedPositions[j])
-                {
-                    // Place i at both positions
+            if (!used[i]) {
+                int secondIdx = idx + i;  // The position for the second occurrence
+                
+                // Check if secondIdx is within bounds and both spots are free
+                if (secondIdx < (int)result.size() && result[idx] == 0 && result[secondIdx] == 0) {
+                    // Place i in both positions
                     result[idx] = i;
-                    result[j]  = i;
-                    usedPositions[idx] = true;
-                    usedPositions[j]   = true;
-                    usedNumbers[i]     = true;
-
-                    // Recurse
-                    if (backtrack(idx + 1, result, usedPositions, usedNumbers, n)) {
+                    result[secondIdx] = i;
+                    used[i] = true;
+                    
+                    // Recurse to fill the rest
+                    if (backtrack(idx + 1, result, used, n)) {
                         return true;
                     }
-
-                    // Backtrack
+                    
+                    // Backtrack if this path didn't lead to a solution
                     result[idx] = 0;
-                    result[j]   = 0;
-                    usedPositions[idx] = false;
-                    usedPositions[j]   = false;
-                    usedNumbers[i]     = false;
+                    result[secondIdx] = 0;
+                    used[i] = false;
                 }
             }
         }
-
-        // If no larger number could be placed, try to place 1
-        // (1 only needs a single position)
-        if (!usedNumbers[1]) {
+        
+        // If no larger number fits, try placing 1 (only needs one spot)
+        if (!used[1]) {
             result[idx] = 1;
-            usedPositions[idx] = true;
-            usedNumbers[1] = true;
-
-            if (backtrack(idx + 1, result, usedPositions, usedNumbers, n)) {
+            used[1] = true;
+            
+            if (backtrack(idx + 1, result, used, n)) {
                 return true;
             }
-
+            
             // Backtrack
             result[idx] = 0;
-            usedPositions[idx] = false;
-            usedNumbers[1] = false;
+            used[1] = false;
         }
-
-        // If nothing fits here, return false
+        
+        // If nothing worked, return false
         return false;
     }
 };
