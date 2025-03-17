@@ -21,10 +21,13 @@ public:
             cout<<increasing[i] ;
         }  
 
-        for(int j=k;j<n-k;j++){
-            if(increasing[j+1]>=k && decreasing[j-1]>=k) {ans.push_back(j);}
+        for(int j = k; j <= n - k - 1; j++) {
+    if (increasing[j+1] >= k && decreasing[j-1] >= k) {
+        ans.push_back(j);
+    }
+}
 
-        } 
+        
         return ans;  
 
         
