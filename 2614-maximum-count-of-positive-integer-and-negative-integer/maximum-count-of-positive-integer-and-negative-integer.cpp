@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maximumCount(vector<int>& nums) {
-        int n=nums.size();
+        size_t n=nums.size();
         int odd=0;
         int even=0;
         for(auto x:nums){
