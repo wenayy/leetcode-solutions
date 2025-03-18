@@ -1,15 +1,26 @@
 class Solution {
 public:
     int rangeBitwiseAnd(int left, int right) {
-        if(left==right) return left;
-        int shift=0;
-         while(left!=right){
-            shift++;
-            left=left>>1;
-            right=right>>1;
-            
-         }
-         left =left<<shift;
-         return left;
+     bitset<32>binary(left);
+           string l = binary.to_string();
+        string r = bitset<32>(right).to_string();
+
+        int len = 32;
+
+        int sum = 0;
+
+        for(int i =0;i<len;i++){
+            if(l[i]==r[i]){
+                if(l[i]=='1'){
+                    sum+=(pow(2,len-i-1));
+                }
+            }
+            else{
+                break;
+            }
+        }
+
+        return sum;
+
     }
 };
