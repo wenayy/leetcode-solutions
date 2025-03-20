@@ -27,10 +27,10 @@ public:
             if (parent_u != parent_v) {
                 cost[parent_u] &= cost[parent_v]; // Update cost of parent_u with cost of parent_v
                 Union(parent_u, parent_v);        // Merge parent_v into parent_u
-                cost[parent_u] &= w;             // Update cost of parent_u with the current edge weight
-            } else {
+                             // Update cost of parent_u with the current edge weight
+            }  
                 cost[parent_u] &= w;             // If both nodes are in the same component, update the cost
-            }
+            
         }
 
         vector<int> result;
