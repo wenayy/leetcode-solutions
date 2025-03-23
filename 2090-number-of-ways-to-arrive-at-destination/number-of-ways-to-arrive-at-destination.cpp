@@ -2,7 +2,7 @@ class Solution {
 public:
   
 
-const int MOD = 1e9 + 7;
+long long int MOD = 1e9 + 7;
 typedef long long ll;
 typedef pair<ll, ll> pll; // (time, node)
 
