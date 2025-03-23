@@ -3,8 +3,8 @@ public:
   
 
 long long int MOD = 1e9 + 7;
-typedef long long ll;
-typedef pair<ll, ll> pll; // (time, node)
+using  ll=long long;
+using  pll= pair<ll, ll>  ; // (time, node)
 
 int countPaths(int n, vector<vector<int>>& roads) {
     vector<vector<pll>> graph(n);
