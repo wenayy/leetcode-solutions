@@ -1,7 +1,7 @@
 class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
-        long long ans=0;
+       uint32_t ans=0;
       string k=bitset<32>(n).to_string();
        int i=0;
        int j=31;
