@@ -1,8 +1,9 @@
 class Solution {
 public:
     int reverse(int x) {
+        using l=long long ;
         if(x==0 || x<=INT_MIN|| x>=INT_MAX) {return 0;}
-      long long  ans=0;
+        l ans=0;
       if(x>0){
             string s=to_string(x);
             int n=s.length();
