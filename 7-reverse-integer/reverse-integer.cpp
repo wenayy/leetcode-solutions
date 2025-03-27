@@ -14,7 +14,7 @@ public:
                 j--;
             }
             ans=stoll(s);
-            if (ans <= INT_MIN || ans >= INT_MAX) {  
+            if (ans < INT_MIN || ans >INT_MAX) {  
             return 0;  
         } 
         else return ans;
