@@ -4,7 +4,7 @@ public:
         if(s.length()==0) return {};
         if(s.length()==1) return {1};
         int n=s.length();
-unordered_map<char,pair<int,int>>mp;
+unordered_map<int ,pair<int,int>>mp;
         for(int i=0;i<n;i++){
             if(mp.find(s[i])!=mp.end()) mp[s[i]]={mp[s[i]].first,i};
            else  mp[s[i]]={i,i};
