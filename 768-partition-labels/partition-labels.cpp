@@ -1,46 +1,40 @@
-#include <vector>
-#include <string>
-#include <map>
-#include <algorithm>
-
-using namespace std;
-
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        // Step 1: Record first and last occurrence of each character
-        map<char, pair<int, int>> intervals;
-        for (int i = 0; i < s.size(); i++) {
-            if (intervals.find(s[i]) == intervals.end()) {
-                intervals[s[i]] = {i, i}; // First occurrence
-            } else {
-                intervals[s[i]].second = i; // Update last occurrence
-            }
+        if(s.length()==0) return {};
+        if(s.length()==1) return {1};
+        int n=s.length();
+unordered_map<int,pair<int,int>>mp;
+        for(int i=0;i<n;i++){
+            if(mp.find(s[i])!=mp.end()) mp[s[i]]={mp[s[i]].first,i};
+           else  mp[s[i]]={i,i};
         }
-        
-        // Step 2: Extract all intervals and sort by start time
-        vector<pair<int, int>> merged;
-        for (auto& [c, interval] : intervals) {
-            merged.push_back(interval);
+        vector<pair<int,int>>intervals;
+        for(auto [x,y]:mp){
+            intervals.push_back(y);
         }
-        sort(merged.begin(), merged.end());
-        
-        // Step 3: Merge overlapping intervals
-        vector<pair<int, int>> result;
-        for (auto& interval : merged) {
-            if (result.empty() || interval.first > result.back().second) {
-                result.push_back(interval);
-            } else {
-                result.back().second = max(result.back().second, interval.second);
-            }
-        }
-        
-        // Step 4: Calculate partition lengths
-        vector<int> partition_sizes;
-        for (auto& [start, end] : result) {
-            partition_sizes.push_back(end - start + 1);
-        }
-        
-        return partition_sizes;
+        sort(intervals.begin(),intervals.end());
+        vector<pair<int,int>>merged;
+        merged.push_back({intervals[0].first,intervals[0].second});
+        for(int i=1;i<intervals.size();i++){
+            int k=merged.back().second;
+            int m=intervals[i].first;
+            int r=intervals[i].second;
+            if(m<=k) {merged.back().second=max(k,r); merged.back().first=min(m,merged.back().first);}
+
+            else merged.push_back({intervals[i].first,intervals[i].second})
+;        }
+
+vector<int>ans;
+for(int i=0;i<merged.size();i++)
+{
+    int r=merged[i].second;
+    int q=merged[i].first;
+    int temp= r-q+1;
+    ans.push_back(temp);
+}
+         return ans;
+         
+ 
     }
 };
