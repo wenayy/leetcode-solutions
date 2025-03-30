@@ -1,40 +1,46 @@
+#include <vector>
+#include <string>
+#include <unordered_map>
+#include <stack>
+
+using namespace std;
+
 class Solution {
 public:
     vector<int> partitionLabels(string s) {
-        if(s.length()==0) return {};
-        if(s.length()==1) return {1};
-        int n=s.length();
-unordered_map<int ,pair<int,int>>mp;
-        for(int i=0;i<n;i++){
-            if(mp.find(s[i])!=mp.end()) mp[s[i]]={mp[s[i]].first,i};
-           else  mp[s[i]]={i,i};
+        unordered_map<char, int> lastOccurrence;
+        for (int i = 0; i < s.size(); ++i) {
+            lastOccurrence[s[i]] = i;
         }
-        vector<pair<int,int>>intervals;
-        for(auto [x,y]:mp){
-            intervals.push_back(y);
+        
+        vector<int> result;
+        stack<int> partitionEnds;
+        int start = 0;
+        
+        for (int i = 0; i < s.size(); ++i) {
+            if (partitionEnds.empty()) {
+                partitionEnds.push(lastOccurrence[s[i]]);
+            } else {
+                if (i > partitionEnds.top()) {
+                    // Current character starts a new partition
+                    result.push_back(partitionEnds.top() - start + 1);
+                    start = i;
+                    partitionEnds.push(lastOccurrence[s[i]]);
+                } else {
+                    // Extend the current partition if necessary
+                    if (lastOccurrence[s[i]] > partitionEnds.top()) {
+                        partitionEnds.pop();
+                        partitionEnds.push(lastOccurrence[s[i]]);
+                    }
+                }
+            }
         }
-        sort(intervals.begin(),intervals.end());
-        vector<pair<int,int>>merged;
-        merged.push_back({intervals[0].first,intervals[0].second});
-        for(int i=1;i<intervals.size();i++){
-            int k=merged.back().second;
-            int m=intervals[i].first;
-            int r=intervals[i].second;
-            if(m<=k) {merged.back().second=max(k,r); merged.back().first=min(m,merged.back().first);}
-
-            else merged.push_back({intervals[i].first,intervals[i].second})
-;        }
-
-vector<int>ans;
-for(int i=0;i<merged.size();i++)
-{
-    int r=merged[i].second;
-    int q=merged[i].first;
-    int temp= r-q+1;
-    ans.push_back(temp);
-}
-         return ans;
-         
- 
+        
+        // Add the last partition
+        if (!partitionEnds.empty()) {
+            result.push_back(partitionEnds.top() - start + 1);
+        }
+        
+        return result;
     }
 };
