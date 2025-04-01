@@ -7,9 +7,9 @@ public:
         for(int i=0;i<nums.size();i++){
             if(mp.find(nums[i])!=mp.end()){
                 if(abs(mp[nums[i]]-i)<=k) ans++;
-                else mp[nums[i]]=i;
+                 
             }
-            else mp[nums[i]]=i;
+          mp[nums[i]]=i;
               
              
         }
