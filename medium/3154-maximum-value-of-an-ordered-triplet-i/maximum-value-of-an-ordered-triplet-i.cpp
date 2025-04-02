@@ -9,11 +9,11 @@ public:
              
                 long long r=nums[k];
                   long long  temp= (nums[i]-nums[j])*r;
-                ans=max(temp,ans);
+                ans=max(temp , ans);
             }
         }
     }
-    if(ans<0) return 0;
-    return ans;
+     
+    return max(0LL,ans);
     }
 };
