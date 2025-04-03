@@ -2,8 +2,8 @@ class Solution {
 public:
     int sumOfBeauties(vector<int>& nums) {
         int n=nums.size();
-        vector<int>left (n, nums[0]);
-             vector<int>right (n,nums[n - 1]);
+        vector<int>left (n, 0);
+             vector<int>right (n,nums[n-1]);
         for(int i=1;i<n;i++){
             
            left[i]=max(left[i-1],nums[i-1]);
