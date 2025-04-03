@@ -12,6 +12,9 @@ public:
 
 
         }
+        for(int i=0;i<n;i++){
+            cout<<right[i];
+        }
         int ans=0;
         for(int i=1;i<n-1;i++){
             if(left[i]<nums[i] && right[i]>nums[i])  ans+=2;
