@@ -10,11 +10,11 @@ public:
 
 
         }
-        int  ans=1;
+        int  ans=0;
 int i=1;
         
-           for(int i=0;i<n-1;i++){
-            if(left[i]<=right[i])  return i+1;
+           for(int i=0;i<n;i++){
+            if(left[i]<=right[i])  return i +1;
            
              
            }
@@ -22,7 +22,7 @@ int i=1;
 
       
 
-         return -1;
+         return ans+1;
 
 
 
