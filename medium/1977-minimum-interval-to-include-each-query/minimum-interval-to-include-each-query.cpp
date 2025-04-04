@@ -20,18 +20,15 @@ public:
         int i = 0; // Pointer for intervals
         for (auto& [query, idx] : queryWithIndex) {
             // Push intervals that start <= query
-            while (i < intervals.size() && intervals[i][0] <= query) {
-                int l = intervals[i][0], r = intervals[i][1];
-                if ( query <= r) {
-                    minHeap.push({r - l + 1, r});
-                }
-                ++i;
-            }
+           while (i < intervals.size() && intervals[i][0] <= query) {
+    minHeap.push({intervals[i][1] - intervals[i][0] + 1, intervals[i][1]});
+    ++i;
+}
 
-            // Pop intervals from heap that end < query
-            while (!minHeap.empty() && minHeap.top().second < query) {
-                minHeap.pop();
-            }
+// Now pop invalid ones
+while (!minHeap.empty() && minHeap.top().second < query) {
+    minHeap.pop();
+}
 
             if (!minHeap.empty()) {
                 result[idx] = minHeap.top().first; // size of smallest interval covering query
