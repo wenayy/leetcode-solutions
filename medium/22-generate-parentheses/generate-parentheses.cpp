@@ -19,7 +19,7 @@ void solve(string& currstring,int n,vector<string>&ans){
     currstring.push_back('(');
     solve(currstring,n, ans);
     currstring.pop_back();
-    if(currstring.size()>0){
+    if(currstring.size()>=1){
     currstring.push_back(')');
     solve(currstring,n,ans);
       currstring.pop_back();}
