@@ -16,12 +16,13 @@ void solve(string& currstring,int n,vector<string>&ans){
         if(isvalid(currstring)){ ans.push_back(currstring);}
         return ;
     }
-    currstring.push_back(')');
+    currstring.push_back('(');
     solve(currstring,n, ans);
     currstring.pop_back();
-    currstring.push_back('(');
+    if(currstring.size()>0){
+    currstring.push_back(')');
     solve(currstring,n,ans);
-      currstring.pop_back();
+      currstring.pop_back();}
     
 
 
