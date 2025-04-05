@@ -14,7 +14,7 @@ for (int i = 0; i < m; i++) {
 }
         int i=0;
         cout<<merged.size();
-        int j= merged.size()-1;
+        int j= m*n-1;
         while(i<=j){
            
             int mid=i+((j-i)/2);
