@@ -4,7 +4,7 @@ public:
         int m=matrix.size();
         int n=matrix[0].size();
         vector<int> merged;
-        merged.reserve(m * n); 
+          
        
     
 for (int i = 0; i < m; i++) {
