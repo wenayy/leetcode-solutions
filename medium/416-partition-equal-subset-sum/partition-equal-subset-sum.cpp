@@ -4,7 +4,7 @@ using namespace std;
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
-        sort(nums.begin(), nums.end());
+        
 
         int total_sum = accumulate(nums.begin(), nums.end(), 0);
 
