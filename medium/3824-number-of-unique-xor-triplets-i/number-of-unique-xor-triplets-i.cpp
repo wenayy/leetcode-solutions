@@ -6,14 +6,9 @@ public:
         if(n < 3) return n;
 
         // Find the Most Significant Bit
-        int cnt = 0;
-        int temp = n;
-        while(temp > 0){
-            cnt++;
-            temp >>= 1;
-            
-        }
         
+        int temp = n;
+     int cnt = floor(log(temp)/log(2))+1;
         return pow(2, cnt);
     }
 };
