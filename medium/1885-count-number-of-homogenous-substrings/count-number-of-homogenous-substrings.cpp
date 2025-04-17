@@ -1,21 +1,27 @@
 class Solution {
 public:
     int countHomogenous(string s) {
-    long long ans = 0, count = 1;
+    int n = s.length();
+    int j = 0;
+    int i = 0;
+    long long ans = 0;
     int mod = 1e9 + 7;
 
-    for (int i = 1; i < s.length(); i++) {
-        if (s[i] == s[i - 1]) {
-            count++;
-        } else {
-            count = 1;
+    while (i < n) {
+        unordered_map<char, int> mp;  // reset map for each homogenous block
+
+        while (i < n && s[i] == s[j]) {
+            mp[s[i]]++;
+            ans = (ans + mp[s[i]]) % mod;
+            i++;
         }
-        ans = (ans + count) % mod;
+
+        j = i;
     }
 
-    // Include the first character (which was missed at start)
-    return (ans + 1) % mod;
+    return ans;
 }
+
 
 
 };
