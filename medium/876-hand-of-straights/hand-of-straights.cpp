@@ -1,30 +1,21 @@
 class Solution {
 public:
-   bool findSuccessors(vector<int>& hand, int groupSize, int i, int n) {
-        int next = hand[i] + 1;
-        hand[i] = -1;  // Mark as used
-        int count = 1;
-        i += 1;
-        while (i < n && count < groupSize) {
-            if (hand[i] == next) {
-                next = hand[i] + 1;
-                hand[i] = -1;
-                count++;
-            }
-            i++;
-        }
-        return count == groupSize;
-    }
-
     bool isNStraightHand(vector<int>& hand, int groupSize) {
-        int n = hand.size();
-        if (n % groupSize != 0) return false;
-        std::sort(hand.begin(), hand.end());
-        for (int i = 0; i < n; i++) {
-            if (hand[i] >= 0) {
-                if (!findSuccessors(hand, groupSize, i, n)) return false;
+        if (hand.size() % groupSize != 0) return false;
+
+        map<int, int> count;
+        for (int card : hand) count[card]++;
+
+        for (auto [num, freq] : count) {
+            if (freq == 0) continue;
+
+            for (int i = 0; i < groupSize; ++i) {
+                int next = num + i;
+                if (count[next] < freq) return false;
+                count[next] -= freq;
             }
         }
+
         return true;
     }
 };
