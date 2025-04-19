@@ -26,13 +26,16 @@ public:
     
     int count(int tot) {
       int n=nums1.size();
-       
+
  
         int ans = 0;
         for (int i = 0; i < n; i++) {
             
      long long target = tot - nums1[i];
-            ans += mp[target];
+           if (mp.count(target)){
+            ans+=mp[target];
+
+           }
         }
 
         return ans;
