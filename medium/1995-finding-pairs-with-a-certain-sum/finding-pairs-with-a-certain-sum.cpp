@@ -25,12 +25,11 @@ public:
     }
     
     int count(int tot) {
+      int n=nums1.size();
        
-sort(nums1.begin(),nums1.end());
-       
-int index=lower_bound(nums1.begin(),nums1.end(),tot)-nums1.begin();
+ 
         int ans = 0;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < n; i++) {
             
      long long target = tot - nums1[i];
             ans += mp[target];
