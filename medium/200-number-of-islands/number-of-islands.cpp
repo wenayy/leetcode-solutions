@@ -2,14 +2,24 @@ class Solution {
 public:
   vector<pair<int,int>>directions={{-1,0},{0,1},{1,0},{0,-1}};
   int m,n;
-  void dfs(vector<vector<char>>&grid,int i,int j){
-   if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != '1') return;
+  void bfs(vector<vector<char>>&grid,int i,int j){
+    queue<pair<int,int>>q;
+    q.push({i,j});
     grid[i][j]='0';
+    while(!q.empty()) { 
+        auto [l,y]=q.front();
+        q.pop();
     for(auto x:directions){
-        int ni=i+x.first;
-        int nj=j+x.second;
-        dfs(grid,ni,nj);
-    }
+        int ni=l+x.first;
+        int nj=y+x.second;
+         if ((ni >= 0 && ni < m )&&(nj >= 0 && nj < n )&& grid[ni][nj] == '1') {
+grid[ni][nj]='0';
+        q.push({ni,nj});
+        }
+
+
+
+    }}
 
     
 
@@ -24,7 +34,7 @@ public:
         for(int j=0;j<n;j++){
             if(grid[i][j]=='1') {
                 ans++;
-            dfs(grid,i,j);
+            bfs(grid,i,j);
             }
         }
       }
