@@ -11,7 +11,9 @@ public:
              int max=x.first+1;
              if (x.first==0) ans+=x.second;
            else   if(x.second-max>0){
-               ans += max * ceil(x.second / double(max)); // this is ceil(x.second / max)
+            if(x.second%max!=0){
+               ans += (max * (x.second / (max)) +max  );  }
+               else ans+=(max*(x.second/max));
 
 
               }
