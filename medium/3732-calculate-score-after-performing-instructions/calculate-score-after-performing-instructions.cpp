@@ -2,13 +2,13 @@ class Solution {
 public:
     long long calculateScore(vector<string>& instructions, vector<int>& values) {
         int n = instructions.size();
-        vector<bool> visited(n, false); // to track revisits
+        unordered_map<int,bool>mp; // to track revisits
 
         long long ans = 0;
-        int i = 0;
+        long long  i = 0;
 
-        while (i >= 0 && i < n && !visited[i]) {
-            visited[i] = true;
+        while ( i>=0 && i < n && !mp[i]) {
+           mp[i] = true;
 
             if (instructions[i] == "add") {
                 ans += values[i];
