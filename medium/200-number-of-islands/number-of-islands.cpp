@@ -4,8 +4,9 @@ public:
   int m,n;
   void bfs(vector<vector<char>>&grid,int i,int j){
     queue<pair<int,int>>q;
+     grid[i][j]='0';
     q.push({i,j});
-    grid[i][j]='0';
+   
     while(!q.empty()) { 
         auto [l,y]=q.front();
         q.pop();
@@ -15,7 +16,7 @@ public:
          if ((ni >= 0 && ni < m )&&(nj >= 0 && nj < n )&& grid[ni][nj] == '1') {
 grid[ni][nj]='0';
         q.push({ni,nj});
-        }
+         }
 
 
 
