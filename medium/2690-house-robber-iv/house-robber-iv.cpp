@@ -11,7 +11,7 @@ public:
                 for(int i=0;i<nums.size();i++){
                     if(nums[i]<=mid){ count++; i++; }
                 }
-                if(count>=k){ ans=min(ans,mid); higher=mid;}
+                if(count>=k){ ans=mid; higher=mid;}
                 else lower=mid+1;
 
             }
