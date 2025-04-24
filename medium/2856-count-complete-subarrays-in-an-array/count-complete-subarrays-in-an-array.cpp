@@ -22,7 +22,7 @@ public:
                     if (ms.find(nums[j]) == ms.end()) {
                         ms2.erase(nums[j]);
                         j++;
-                        continue;
+                      break;
                     }
 
                     j++;
