@@ -21,6 +21,8 @@ public:
                     // Check if that value still exists in multiset
                     if (ms.find(nums[j]) == ms.end()) {
                         ms2.erase(nums[j]);
+                        j++;
+                        continue;
                     }
 
                     j++;
