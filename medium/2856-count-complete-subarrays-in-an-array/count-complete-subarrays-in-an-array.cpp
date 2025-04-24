@@ -24,11 +24,12 @@ public:
                         j++;
                       break;
                     }
-
-                    j++;
-                    if (ms2.size() == mp.size()) {
+                     if (ms2.size() == mp.size()) {
                         ans += n - i;
                     }
+
+                    j++;
+                   
                 }
             }
 
