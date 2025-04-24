@@ -1,25 +1,36 @@
 class Solution {
 public:
     int countCompleteSubarrays(vector<int>& nums) {
-        int n = nums.size();
-        unordered_set<int> distinctSet(nums.begin(), nums.end());
-        int totalDistinct = distinctSet.size();
+        set<int> mp(nums.begin(), nums.end()); // total distinct
+        multiset<int> ms;
+        set<int> ms2;
 
-        unordered_map<int, int> freq;
-        int ans = 0;
-        int j = 0;
+        int i = 0, j = 0, n = nums.size(), ans = 0;
 
-        for (int i = 0; i < n; ++i) {
-            freq[nums[i]]++;
+        while (i < n) {
+            ms.insert(nums[i]);
+            ms2.insert(nums[i]);
 
-            while (freq.size() == totalDistinct) {
-                ans += n - i;  // All subarrays from i to n-1 are valid
-                freq[nums[j]]--;
-                if (freq[nums[j]] == 0) {
-                    freq.erase(nums[j]);
+            if (ms2.size() == mp.size()) {
+                ans += n - i;
+
+                while (  ms2.size() == mp.size()) {
+                    // Erase one instance from multiset
+                    ms.erase(ms.find(nums[j]));
+
+                    // Check if that value still exists in multiset
+                    if (ms.find(nums[j]) == ms.end()) {
+                        ms2.erase(nums[j]);
+                    }
+
+                    j++;
+                    if (ms2.size() == mp.size()) {
+                        ans += n - i;
+                    }
                 }
-                j++;
             }
+
+            i++;
         }
 
         return ans;
