@@ -1,23 +1,15 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int n=nums.size();
-        int ans=INT_MIN;
-        int i=0;
-        int temp=0;
-        
-        while(i<n){
-            temp+=nums[i];
-            ans=max(temp,ans);
-            cout<<ans<<endl;
-            if(temp<0) temp=0;
-            
-             
-            i++;
+        int n = nums.size();
+        int ans = INT_MIN;
+        int temp = 0;
 
-
+        for (int i = 0; i < n; i++) {
+            temp = max(temp + nums[i], nums[i]);  // extend or start new
+            ans = max(ans, temp);  // update answer
         }
+
         return ans;
-        
     }
 };
