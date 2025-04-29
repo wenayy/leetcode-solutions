@@ -10,7 +10,7 @@ public:
         long long ans=0;
         while(i<n){
             if(nums[i]==mx) count++;
-            while(count>=k){
+            while(count==k){
                 ans+=(n-i);
                 if(nums[j]==mx) count--;
                 j++;
