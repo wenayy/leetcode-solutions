@@ -8,16 +8,16 @@ public:
         int ans=0;
         for(auto x:mp){
             
-             int max=x.first+1;
+             int mx=x.first+1;
              if (x.first==0) ans+=x.second;
-           else   if(x.second-max>0){
-            if(x.second%max!=0){
-               ans += (max * (x.second / (max)) +max  );  }
-               else ans+=(max*(x.second/max));
+         
+           
+            else   { ans += (mx *  ceil(double(x.second)/ (mx))    );  }
+              
 
 
-              }
-             else   ans+=max;
+             
+      
             
             
              
