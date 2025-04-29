@@ -12,7 +12,7 @@ public:
              if (x.first==0) ans+=x.second;
          
            
-            else   { ans += (mx *  ceil(double(x.second)/ (mx))    );  }
+            else   {  ans += mx * ((x.second + mx - 1) / mx);  }
               
 
 
