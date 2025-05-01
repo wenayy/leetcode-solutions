@@ -34,7 +34,7 @@ public:
             return true;
         };
 
-        int left = 0, right = min(m, n), ans = 0;
+        int left = 1, right = min(m, n), ans = 0;
         while (left <= right) {
             int mid = (left + right) / 2;
             if (check(mid)) {
