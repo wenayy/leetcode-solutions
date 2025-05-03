@@ -1,24 +1,20 @@
 class Solution {
 public:
     int minDominoRotations(vector<int>& tops, vector<int>& bottoms) {
-       unordered_map<int,int>mp;
+        
     unordered_map<int,int>top;
         unordered_map<int,int>bottom;
         
         for(auto x:tops){
-            mp[x]++;
+           
             top[x]++;
            
         }
         for(auto y:bottoms){
            bottom[y]++;
-            mp[y]++;
+            
         }
-        int ans=0;
-        for(auto x:mp){
-            ans=max(x.second,ans);
-             
-        }
+        
        
         int result1=0;
         int result2=0;
