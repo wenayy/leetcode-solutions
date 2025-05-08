@@ -20,8 +20,7 @@ public:
             int x=pq.top().second.first;
             int y=pq.top().second.second;
             pq.pop();
-            if(v[x][y]) continue;
-            v[x][y]=1;
+            
             for(auto r:dir){
                 int nx=x+r.first;
                 int ny=y+r.second;
